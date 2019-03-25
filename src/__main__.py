@@ -1,22 +1,25 @@
 import argparse
 
-from models import copy_paster, url_graph, kw_extraction, stopwords
+from .common import start_model
+from .models import copy_paster, url_graph, kw_extraction, stopwords
 
 
 parser = argparse.ArgumentParser()
 
 parser.add_argument("model")
+parser.add_argument("--train", action="store_true")
 
-
-def copy_paster_model():
-    copy_paster.start()
-
-
-models = {"copy": copy_paster_model}
+models = {"copy": copy_paster.model}
 
 def main():
     args = parser.parse_args()
-    models[args.model]()
+    # Load data
+    # ...
+    train, test = None, None
+    if args.train:
+        start_model(models[args.model](), train)
+    else:
+        start_model(models[args.model](), test)
 
 if __name__ == "__main__":
     main()
