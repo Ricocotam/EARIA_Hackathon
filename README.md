@@ -24,3 +24,9 @@ Dans chaque fichier :
 
 ## List des modèles
 TBD
+
+
+# Notes
+salton123
+BPE multlingue
+Spacy embedding
