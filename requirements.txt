@@ -5,5 +5,5 @@ numpy
 matplotlib
 beautifulsoup4
 gensim
-nltk.download('wordnet')
 py-rouge
+tqdm
