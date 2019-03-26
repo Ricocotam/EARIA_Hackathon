@@ -3,6 +3,14 @@ import pandas as pd
 import glob
 import os.path
 from urllib.parse import urlparse
+from urllib.request import urlopen
+from typing import List, NewType
+import urllib.request as urlr
+import urllib.parse as urlp
+from urllib.request import Request
+import re
+import json
+
 
 path = '../data/train'
 
@@ -38,10 +46,8 @@ def extractURLs(fileContent):
     return cleanUrls
 
 URLs = [extractURLs(file) for file in content]
-print("done")
 import itertools
 merged = list(itertools.chain(*URLs))
-print(merged[0])
 
 out = []
 for url in merged:
@@ -64,4 +70,52 @@ voca = [i[0] for i in bob]
 #la on a le tf
 tf = [i[1]/somme for i in bob]
 
+def getText(page):
+    # Recupération du contenu html de la page
+    fp = urlopen(page)
+    mybytes = fp.read()
+    
+    mystr = mybytes.decode("utf8")
+    fp.close()
 
+    # On parse le html
+
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(mystr, 'html.parser')
+
+    txt = [re.sub(' +',' ',(''.join(node.findAll(text=True))).replace("\t", " ").replace("\r\n",".")) for node in soup.findAll('p')]
+    txt = ".".join([stri.replace("\n", "") for stri in txt])
+    return(txt)
+
+run = {}
+compteur = 1
+with open("../data/toto.txt", "r") as f:
+    for line in f:
+        print(compteur)
+        out = line.split(":")
+        qid = out.pop(0)
+        urls = ":".join(out)
+        urls = urls.split(" ")
+        names = [urlparse(url).hostname for url in urls]
+        freq = []
+        for n in names:
+            try:
+                freq.append(tf[voca.index(n)])
+            except:
+                freq.append(0)
+        urls = [x for _,x in sorted(zip(freq,urls))]
+        out = ""
+        for i in range(15):
+            try:
+                stout = getText(urls[i])
+                out = "\n".join([out,stout])
+                print("mop")
+                run[qid] = out
+            except:
+                True
+    
+        compteur = compteur + 1
+
+import json
+with open("bob.json", "wb") as f:
+    f.write(json.dumps(run).encode("utf-8"))
