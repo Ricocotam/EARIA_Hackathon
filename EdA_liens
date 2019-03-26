@@ -1,0 +1,20 @@
+Quelques liens sur les mesures de similarités
+
+Un article un peu vieux mais intéressant sur la comparaison de 3 mesures de similarité : le cosinus de Salton, la distance du khi-deux, le cosinus dans l'espace distributionnel :
+http://lexicometrica.univ-paris3.fr/jadt/jadt2002/PDF-2002/lelu.pdf
+
+Un cours simple qui explique certaines mesures de similarité :
+http://igm.univ-mlv.fr/ens/Master/M2/2007-2008/TAL/cours/mstal-1-3-m2.pdf
+
+Description du package Proxy sous R, qui permet de faire des calculs de similarité
+https://cran.r-project.org/web/packages/proxy/proxy.pdf
+
+Une HDR qui présente les principales méthodes de similarité :
+http://webia.lip6.fr/~rifqi/hdr_Rifqi.pdf
+
+Méthode Jaccard pour Python : 
+https://scikit-learn.org/stable/modules/generated/sklearn.metrics.jaccard_similarity_score.html
+
+Autre
+Méthodes NLP pour Python :
+http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx/ml2a/td_2a_mlplus.html#texte-natural-language-processing-nlp
