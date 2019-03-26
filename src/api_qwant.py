@@ -16,8 +16,11 @@ Url = NewType("Url", str)
 def send_query(query_text: str) -> Url:
     """Request the Qwant API."""
     query="user={}&pass={}&q={}".format(urlp.quote(USER),urlp.quote(PASSWORD),urlp.quote(query_text))
-    r = urlr.urlopen("{}/query?{}".format(BASEURL,query))
-    response = json.loads(r.read().decode("utf-8"))
+    print(query_text, query)
+    r = urlr.urlopen("{}/query?{}".format(BASEURL, query))
+    s = r.read()
+    print(r)
+    response = json.loads(s)
     return response
 
 evaluator = rouge.Rouge(metrics=['rouge-n'],
