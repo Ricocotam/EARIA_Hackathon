@@ -21,10 +21,10 @@ doc_train = pd.DataFrame(
      'content': content
     })
 
-print(doc_train)
+#print(doc_train)
 
 train = pd.read_json("../data/trainQD.json")
-print(train.head())
+#print(train.head())
 test = pd.read_json("../data/testQD.json")
-print(test.head())
+#print(test.head())
 
