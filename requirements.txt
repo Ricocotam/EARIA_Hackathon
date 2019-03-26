@@ -5,3 +5,5 @@ numpy
 matplotlib
 beautifulsoup4
 gensim
+nltk.download('wordnet')
+pip install py-rouge
