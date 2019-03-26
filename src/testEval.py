@@ -30,8 +30,8 @@ def getText(url):
     soup = BeautifulSoup(mystr, 'html.parser')
 
     
-    txt = [re.sub(' +',' ',(''.join(node.findAll(text=True))).replace("\t", " ").replace("\r\n",".")) for node in soup.findAll('p')]
-    txt = " ".join([stri.replace("\n", "") for stri in txt])
+    txt = [re.sub(' +',' ',(''.join(node.findAll(text=True))).replace("\t", "\n").replace("\r\n","\n")) for node in soup.findAll('p')]
+    txt = "\n".join([stri.replace("\n", "\n") for stri in txt])
     return(txt)
 
 # getting the nltk tokens from a text
@@ -144,4 +144,9 @@ doc = mat[1:mat.shape[0]]
 print(np.dot(query,doc.transpose()))
 
 
+from gensim.summarization.summarizer import summarize
+txt = getText("https://www.lemonde.fr/pixels/article/2019/03/26/la-controversee-directive-sur-le-droit-d-auteur-adoptee-par-le-parlement-europeen_5441480_4408996.html")
+txt2 = getText("https://www.lemonde.fr/societe/article/2019/03/26/manifestante-blessee-a-nice-les-versions-s-opposent_5441449_3224.html")
 
+print(summarize(txt))
+print(summarize(txt2))
